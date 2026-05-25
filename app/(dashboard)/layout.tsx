@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import Sidebar from '@/components/layout/Sidebar'
 import MobileNav from '@/components/layout/MobileNav'
 import Header from '@/components/layout/Header'
