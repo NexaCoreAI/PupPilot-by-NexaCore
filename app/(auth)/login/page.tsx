@@ -37,7 +37,7 @@ export default function LoginPage() {
           <div className="w-10 h-10 rounded-2xl bg-[#5B9BD5] flex items-center justify-center shadow-sm">
             <Heart className="w-5 h-5 text-white" />
           </div>
-          <span className="font-semibold text-charcoal-700 text-2xl tracking-tight">PupPilot</span>
+          <span className="font-semibold text-charcoal-700 text-2xl tracking-tight">Four Leg Life</span>
         </div>
 
         <div className="bg-white rounded-3xl shadow-card p-8">

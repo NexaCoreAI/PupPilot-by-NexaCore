@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'PupPilot — Daily Dog Care',
+  title: 'Four Leg Life — Daily Dog Care',
   description: 'The modern daily care management app for dog owners.',
 }
 

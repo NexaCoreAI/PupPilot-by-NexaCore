@@ -35,7 +35,7 @@ export default function Sidebar() {
         <div className="w-8 h-8 rounded-xl bg-[#5B9BD5] flex items-center justify-center">
           <Heart className="w-4 h-4 text-white" />
         </div>
-        <span className="font-semibold text-charcoal-700 text-lg tracking-tight">PupPilot</span>
+        <span className="font-semibold text-charcoal-700 text-lg tracking-tight">Four Leg Life</span>
       </div>
 
       {/* Nav links */}

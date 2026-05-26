@@ -68,7 +68,7 @@ export default function PricingPage() {
           <div className="w-7 h-7 rounded-xl bg-[#5B9BD5] flex items-center justify-center">
             <Heart className="w-3.5 h-3.5 text-white" />
           </div>
-          <span className="font-semibold text-charcoal-700">PupPilot</span>
+          <span className="font-semibold text-charcoal-700">Four Leg Life</span>
         </Link>
         <Link href="/login" className="text-sm text-charcoal-500 hover:text-charcoal-700 font-medium">Sign in</Link>
       </header>
@@ -131,7 +131,7 @@ export default function PricingPage() {
         <div className="text-center mt-14">
           <p className="text-charcoal-400 text-sm">
             Questions? Email us at{' '}
-            <span className="text-[#5B9BD5] font-medium">hello@puppilot.app</span>
+            <span className="text-[#5B9BD5] font-medium">hello@four-leg-life.app</span>
           </p>
           <p className="text-xs text-charcoal-300 mt-2">Stripe billing · cancel anytime · no hidden fees</p>
         </div>
