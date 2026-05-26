@@ -71,6 +71,13 @@ export default function SignupPage() {
             <Link href="/login" className="text-sage font-semibold hover:underline">Sign in</Link>
           </p>
         </div>
+
+        <p className="text-xs text-taupe text-center mt-5">
+          By creating an account, you agree to our{' '}
+          <Link href="/terms" className="underline hover:text-forest">Terms</Link>
+          {' '}and{' '}
+          <Link href="/privacy" className="underline hover:text-forest">Privacy Policy</Link>
+        </p>
       </div>
     </div>
   )
