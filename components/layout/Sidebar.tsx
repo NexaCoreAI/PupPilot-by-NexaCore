@@ -3,19 +3,20 @@
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import {
-  LayoutDashboard, CheckSquare, Bell, FileText, BookOpen,
-  Dumbbell, Settings, LogOut, Sparkles, Heart,
+  LayoutDashboard, PawPrint, ListChecks, Bell, FileText,
+  BookOpen, Dumbbell, Settings, LogOut,
 } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 
 const nav = [
-  { href: '/today',        label: 'Today',         icon: LayoutDashboard },
-  { href: '/checklist',   label: 'Checklist',     icon: CheckSquare },
-  { href: '/reminders',   label: 'Reminders',     icon: Bell },
-  { href: '/records',     label: 'Records',       icon: FileText },
-  { href: '/sitter-guide',label: 'Sitter Guide',  icon: Sparkles },
-  { href: '/training',    label: 'Training',      icon: Dumbbell },
-  { href: '/settings',    label: 'Settings',      icon: Settings },
+  { href: '/today',        label: 'Today',       icon: LayoutDashboard },
+  { href: '/dogs',         label: 'Pets',         icon: PawPrint },
+  { href: '/checklist',    label: 'Routines',     icon: ListChecks },
+  { href: '/reminders',    label: 'Reminders',    icon: Bell },
+  { href: '/records',      label: 'Records',      icon: FileText },
+  { href: '/sitter-guide', label: 'Sitter Guide', icon: BookOpen },
+  { href: '/training',     label: 'Training',     icon: Dumbbell },
+  { href: '/settings',     label: 'Settings',     icon: Settings },
 ]
 
 export default function Sidebar() {
@@ -29,16 +30,19 @@ export default function Sidebar() {
   }
 
   return (
-    <aside className="hidden md:flex flex-col w-60 min-h-screen bg-white border-r border-charcoal-100 py-6 px-4 fixed top-0 left-0 z-10">
+    <aside className="hidden md:flex flex-col w-64 min-h-screen bg-white border-r border-sand py-7 px-5 fixed top-0 left-0 z-10">
       {/* Logo */}
-      <div className="flex items-center gap-2.5 px-2 mb-8">
-        <div className="w-8 h-8 rounded-xl bg-[#5B9BD5] flex items-center justify-center">
-          <Heart className="w-4 h-4 text-white" />
+      <div className="flex items-center gap-3 px-2 mb-8">
+        <div className="w-9 h-9 rounded-lg bg-sage flex items-center justify-center shadow-sm">
+          <PawPrint className="w-5 h-5 text-white" />
         </div>
-        <span className="font-semibold text-charcoal-700 text-lg tracking-tight">Four Leg Life</span>
+        <div>
+          <span className="font-bold text-forest text-lg leading-tight block">Four Leg Life</span>
+          <span className="text-xs text-taupe leading-none">Your pet's life, organized.</span>
+        </div>
       </div>
 
-      {/* Nav links */}
+      {/* Nav */}
       <nav className="flex flex-col gap-1 flex-1">
         {nav.map(({ href, label, icon: Icon }) => {
           const active = pathname === href || pathname.startsWith(href + '/')
@@ -46,23 +50,22 @@ export default function Sidebar() {
             <Link
               key={href}
               href={href}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
+              className={`flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium transition-all ${
                 active
-                  ? 'bg-[#EBF5FF] text-[#3D7FBF]'
-                  : 'text-charcoal-500 hover:bg-cream-100 hover:text-charcoal-700'
+                  ? 'bg-sage/10 text-forest'
+                  : 'text-taupe hover:bg-cream hover:text-charcoal'
               }`}
             >
-              <Icon className="w-4 h-4 flex-shrink-0" />
+              <Icon className={`w-4 h-4 flex-shrink-0 ${active ? 'text-sage' : ''}`} />
               {label}
             </Link>
           )
         })}
       </nav>
 
-      {/* Sign out */}
       <button
         onClick={signOut}
-        className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-charcoal-400 hover:bg-cream-100 hover:text-charcoal-600 transition-all mt-4"
+        className="flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium text-taupe hover:bg-cream hover:text-charcoal transition-all mt-2"
       >
         <LogOut className="w-4 h-4" />
         Sign out

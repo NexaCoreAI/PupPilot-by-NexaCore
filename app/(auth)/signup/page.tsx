@@ -2,14 +2,12 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { Heart } from 'lucide-react'
+import { PawPrint } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
 
 export default function SignupPage() {
-  const router = useRouter()
   const supabase = createClient()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -23,87 +21,54 @@ export default function SignupPage() {
     setLoading(true)
     setError('')
     const { error } = await supabase.auth.signUp({
-      email,
-      password,
+      email, password,
       options: { data: { full_name: name } },
     })
-    if (error) {
-      setError(error.message)
-      setLoading(false)
-    } else {
-      setSuccess(true)
-      setLoading(false)
-    }
+    if (error) { setError(error.message); setLoading(false) }
+    else { window.location.href = '/today' }
   }
 
   if (success) {
     return (
-      <div className="min-h-screen bg-cream-100 flex items-center justify-center p-4">
-        <div className="w-full max-w-sm bg-white rounded-3xl shadow-card p-8 text-center">
-          <div className="w-12 h-12 rounded-2xl bg-[#EDFFF5] flex items-center justify-center mx-auto mb-4">
-            <span className="text-2xl">🐾</span>
-          </div>
-          <h2 className="text-xl font-semibold text-charcoal-700 mb-2">Check your email</h2>
-          <p className="text-sm text-charcoal-400">We sent a confirmation link to <strong>{email}</strong>. Click it to activate your account.</p>
-          <Link href="/login" className="block mt-6 text-sm text-[#5B9BD5] font-medium hover:underline">
-            Back to sign in
-          </Link>
+      <div className="min-h-screen bg-cream flex items-center justify-center p-4">
+        <div className="w-full max-w-sm bg-white rounded-2xl shadow-card border border-sand p-8 text-center">
+          <div className="text-4xl mb-4">🐾</div>
+          <h2 className="text-xl font-bold text-forest mb-2">Check your email</h2>
+          <p className="text-base text-taupe">We sent a confirmation link to <strong>{email}</strong>.</p>
+          <Link href="/login" className="block mt-6 text-base text-sage font-semibold hover:underline">Back to sign in</Link>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-cream-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-cream flex items-center justify-center p-4">
       <div className="w-full max-w-sm">
-        <div className="flex items-center justify-center gap-2.5 mb-8">
-          <div className="w-10 h-10 rounded-2xl bg-[#5B9BD5] flex items-center justify-center shadow-sm">
-            <Heart className="w-5 h-5 text-white" />
+        <div className="flex items-center justify-center gap-3 mb-8">
+          <div className="w-11 h-11 rounded-xl bg-sage flex items-center justify-center shadow-sm">
+            <PawPrint className="w-6 h-6 text-white" />
           </div>
-          <span className="font-semibold text-charcoal-700 text-2xl tracking-tight">Four Leg Life</span>
+          <div>
+            <span className="font-bold text-forest text-xl block leading-tight">Four Leg Life</span>
+            <span className="text-xs text-taupe">Your pet's life, organized.</span>
+          </div>
         </div>
 
-        <div className="bg-white rounded-3xl shadow-card p-8">
-          <h2 className="text-xl font-semibold text-charcoal-700 mb-1">Create account</h2>
-          <p className="text-sm text-charcoal-400 mb-6">Start managing your dog's care today</p>
+        <div className="bg-white rounded-2xl shadow-card border border-sand p-8">
+          <h2 className="text-2xl font-bold text-forest mb-1">Create account</h2>
+          <p className="text-base text-taupe mb-6">Start managing your pet's care today</p>
 
           <form onSubmit={handleSignup} className="flex flex-col gap-4">
-            <Input
-              label="Your name"
-              type="text"
-              placeholder="Alex"
-              value={name}
-              onChange={e => setName(e.target.value)}
-              required
-            />
-            <Input
-              label="Email"
-              type="email"
-              placeholder="you@example.com"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              required
-            />
-            <Input
-              label="Password"
-              type="password"
-              placeholder="At least 8 characters"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              minLength={8}
-              required
-            />
-            {error && <p className="text-sm text-[#E8705A] bg-[#FFF0ED] rounded-xl px-3 py-2">{error}</p>}
-            <Button type="submit" size="lg" loading={loading} className="w-full mt-1">
-              Create account
-            </Button>
+            <Input label="Your name" type="text" placeholder="Alex" value={name} onChange={e => setName(e.target.value)} required />
+            <Input label="Email" type="email" placeholder="you@example.com" value={email} onChange={e => setEmail(e.target.value)} required />
+            <Input label="Password" type="password" placeholder="At least 8 characters" value={password} onChange={e => setPassword(e.target.value)} minLength={8} required />
+            {error && <p className="text-sm text-danger bg-danger/10 rounded-lg px-4 py-3">{error}</p>}
+            <Button type="submit" size="lg" loading={loading} className="w-full mt-1">Create account</Button>
           </form>
 
-          <p className="text-sm text-charcoal-400 text-center mt-5">
+          <p className="text-base text-taupe text-center mt-5">
             Already have an account?{' '}
-            <Link href="/login" className="text-[#5B9BD5] font-medium hover:underline">
-              Sign in
-            </Link>
+            <Link href="/login" className="text-sage font-semibold hover:underline">Sign in</Link>
           </p>
         </div>
       </div>
