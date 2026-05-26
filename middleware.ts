@@ -25,20 +25,7 @@ export async function middleware(request: NextRequest) {
     }
   )
 
-  const { data: { session } } = await supabase.auth.getSession()
-
-  const { pathname } = request.nextUrl
-
-  const publicPaths = ['/login', '/signup', '/pricing', '/auth']
-  const isPublic = publicPaths.some(p => pathname.startsWith(p))
-
-  if (!session && !isPublic) {
-    return NextResponse.redirect(new URL('/login', request.url))
-  }
-
-  if (session && (pathname === '/login' || pathname === '/signup' || pathname === '/')) {
-    return NextResponse.redirect(new URL('/today', request.url))
-  }
+  await supabase.auth.getSession()
 
   return supabaseResponse
 }
